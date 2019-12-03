@@ -1,0 +1,249 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.animation {
+    display: flex;
+}
+
+.jd-animation {
+    background: #333;
+    position: relative;
+}
+
+.jd-animation,
+.newton-animation {
+    height: 100vh;
+    width: 50%;
+}
+
+.menu-wrapper,
+.pendulum-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-line {
+    cursor: pointer;
+}
+
+.menu-wrapper span {
+    width: 100px;
+    height: 4px;
+    background: #fff;
+    position: relative;
+    margin-bottom: 20px;
+    display: block;
+    transition: 0.5s;
+    bottom: 0;
+}
+
+.top-line {
+    transition-delay: 0.1s;
+    left: 0;
+    top: 0;
+}
+
+.menu-wrapper span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 10%;
+    height: 100%;
+    background: #333;
+}
+
+.menu-wrapper span.center-line::before {
+    left: 80%;
+}
+
+.menu-wrapper input {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    clip: rect(0, 0, 0, 0);
+    outline: 0;
+}
+
+input:checked + .menu-line .top-line {
+    opacity: 0;
+    top: -45px;
+    left: 20px;
+}
+
+input:checked + .menu-line .bottom-line {
+    transform: rotate(-45deg);
+    bottom: 24px;
+}
+
+input:checked + .menu-line .center-line {
+    transform: rotate(45deg);
+}
+
+input:checked:hover + .menu-line .center-line {
+    box-shadow: -5px 0px 15px 0px #d72854, inset 0px 0px 1px 0px #d72854;
+}
+
+input:checked:hover + .menu-line .bottom-line {
+    box-shadow: 5px 0px 15px 0px #2bd522, inset 0px 0px 1px 0px #2bd522;
+}
+
+
+/*===========Newton animation========*/
+
+.newton-animation {
+    background: #f8dfe3;
+    position: relative;
+}
+
+.pendulum-balls {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+
+.pendulum-balls {
+    margin-bottom: 30px;
+}
+
+.pendulum-balls-item {
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+    position: relative;
+}
+
+.pendulum-shadows {
+    display: flex;
+}
+
+.pendulum-shadows-item {
+    width: 20px;
+    height: 6px;
+    border-radius: 50%;
+    filter: blur(3px);
+    opacity: 0.2;
+    position: relative;
+}
+
+.ball-1,
+.shadow-ball-1 {
+    background: linear-gradient(to right, #31506e 0%, #2d4e6b 100%);
+}
+
+.ball-2,
+.shadow-ball-2 {
+    background: linear-gradient(to right, #2d4e6b 0%, #3c4962 100%);
+}
+
+.ball-3,
+.shadow-ball-3 {
+    background: linear-gradient(to right, #3c4962 0%, #5c4350 100%);
+}
+
+.ball-4,
+.shadow-ball-4 {
+    background: linear-gradient(to right, #5c4350 0%, #853e40 100%);
+}
+
+.ball-5,
+.shadow-ball-5 {
+    background: linear-gradient(to right, #853e40 0%, #b0372e 100%);
+}
+
+.ball-6,
+.shadow-ball-6 {
+    background: linear-gradient(to right, #b0372e 0%, #c33929 100%);
+}
+
+.pendulum-balls-item:first-child {
+    animation: animate-left 1s linear infinite;
+}
+
+.pendulum-balls-item:last-child {
+    animation: animate-right 1s linear infinite;
+    animation-delay: .5s;
+}
+
+.pendulum-shadows-item:first-child {
+    animation: shadow-left 1s linear infinite;
+}
+
+.pendulum-shadows-item:last-child {
+    animation: shadow-right 1s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes animate-left {
+    0% {
+        transform: rotate(0deg) translateX(0px);
+    }
+    25% {
+        transform: rotate(60deg) translateX(-40px);
+    }
+    50%,
+    100% {
+        transform: rotate(0deg) translateX(0px);
+    }
+}
+
+@keyframes animate-right {
+    0% {
+        transform: rotate(0deg) translateX(0px);
+    }
+    25% {
+        transform: rotate(-60deg) translateX(40px);
+    }
+    50%,
+    100% {
+        transform: rotate(0deg) translateX(0px);
+    }
+}
+
+@keyframes shadow-left {
+    0% {
+        opacity: 0.2;
+        left: 0;
+    }
+    25% {
+        opacity: 0;
+        left: -40px;
+    }
+    50%,
+    100% {
+        opacity: 0.2;
+        left: 0;
+    }
+}
+
+@keyframes shadow-right {
+    0% {
+        opacity: 0.2;
+        right: 0;
+    }
+    25% {
+        opacity: 0;
+        right: -40px;
+    }
+    50%,
+    100% {
+        opacity: 0.2;
+        right: 0;
+    }
+}
